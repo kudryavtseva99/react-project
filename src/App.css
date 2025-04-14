@@ -6,24 +6,3 @@
     "header header"
     "nav content";
 }
-
-.header {
-  grid-area: header;
-  background-color: pink;
-}
-
-.header img {
-  width: 80px;
-}
-
-.nav {
-  grid-area: nav;
-}
-
-.content {
-  grid-area: content;
-}
-
-.content img {
-  max-width: 1300px;
-}
