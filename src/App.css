@@ -9,7 +9,7 @@
 
 .header {
   grid-area: header;
-  background-color: green;
+  background-color: pink;
 }
 
 .header img {
