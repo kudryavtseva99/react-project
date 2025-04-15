@@ -6,3 +6,12 @@
     "header header"
     "nav content";
 }
+
+.app-wrapper-content {
+  grid-area: content;
+  background-color: plum;
+}
+
+img {
+  max-width: 1300px;
+}
