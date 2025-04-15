@@ -1,6 +1,6 @@
 import s from "./Post.module.css";
 
-const Post = () => {
+const Post = (props) => {
   return (
     <div>
       <div className={s.item}>
@@ -8,9 +8,9 @@ const Post = () => {
           src="https://img.freepik.com/free-vector/hand-drawn-kitsune-illustration_23-2149364567.jpg"
           alt="кицунэ"
         />
-        Post 1
+        {props.message}
         <div>
-          <span>like</span>
+          <span>{props.like}</span>
         </div>
       </div>
     </div>
