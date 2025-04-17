@@ -1,90 +1,17 @@
-import { NavLink } from "react-router-dom";
 import s from "./Dialogs.module.css";
+import DialogItem from "./DialogItem/DialogItem";
 
 const Dialogs = (props) => {
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItems}>
-        <div>
-          <NavLink
-            to="/dialogs/1"
-            className={({ isActive }) =>
-              isActive ? `${s.dialog} ${s.activeItem}` : s.dialog
-            }
-          >
-            Dima
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            to="/dialogs/2"
-            className={({ isActive }) =>
-              isActive ? `${s.dialog} ${s.activeItem}` : s.dialog
-            }
-          >
-            Sasha
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            to="/dialogs/3"
-            className={({ isActive }) =>
-              isActive ? `${s.dialog} ${s.activeItem}` : s.dialog
-            }
-          >
-            Artur
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            to="/dialogs/4"
-            className={({ isActive }) =>
-              isActive ? `${s.dialog} ${s.activeItem}` : s.dialog
-            }
-          >
-            Julia
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            to="/dialogs/5"
-            className={({ isActive }) =>
-              isActive ? `${s.dialog} ${s.activeItem}` : s.dialog
-            }
-          >
-            Roma
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            to="/dialogs/6"
-            className={({ isActive }) =>
-              isActive ? `${s.dialog} ${s.activeItem}` : s.dialog
-            }
-          >
-            Elena
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            to="/dialogs/7"
-            className={({ isActive }) =>
-              isActive ? `${s.dialog} ${s.activeItem}` : s.dialog
-            }
-          >
-            Nastya
-          </NavLink>
-        </div>
-        <div>
-          <NavLink
-            to="/dialogs/8"
-            className={({ isActive }) =>
-              isActive ? `${s.dialog} ${s.activeItem}` : s.dialog
-            }
-          >
-            Valeria
-          </NavLink>
-        </div>
+        <DialogItem name="Dima" id="1" />
+        <DialogItem name="Sasha" id="2" />
+        <DialogItem name="Artur" id="3" />
+        <DialogItem name="Julia" id="4" />
+        <DialogItem name="Roma" id="5" />
+        <DialogItem name="Elena" id="6" />
+        <DialogItem name="Nastya" id="7" />
       </div>
       <div className={s.messages}>
         <div className={s.message}>Hi! How are you?</div>
