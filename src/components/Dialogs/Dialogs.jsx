@@ -1,5 +1,6 @@
 import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
+import Message from "./Messages/Message";
 
 const Dialogs = (props) => {
   return (
@@ -14,9 +15,13 @@ const Dialogs = (props) => {
         <DialogItem name="Nastya" id="7" />
       </div>
       <div className={s.messages}>
-        <div className={s.message}>Hi! How are you?</div>
-        <div className={s.message}>What's your hobby?</div>
-        <div className={s.message}>How is your day today?</div>
+        <Message message="Hi! How are you?" />
+        <Message message="I want to tell you about my day." />
+        <Message message="What's your fav hobby?" />
+        <Message message="See u soon" />
+        <Message message="I'm late. Sorry" />
+        <Message message="Tomorrow" />
+        <Message message="Think about it" />
       </div>
     </div>
   );
