@@ -2,9 +2,9 @@ import { NavLink } from "react-router-dom";
 import s from "../Dialogs.module.css";
 
 const DialogItem = (props) => {
-  let path = "/dialogs/" + props.id;
+  let path = `/dialogs/${props.id}`;
   return (
-    <div>
+    <div className="wrapper">
       <NavLink
         to={path}
         className={({ isActive }) =>
