@@ -1,6 +1,6 @@
 .app-wrapper {
   display: grid;
-  grid-template-columns: 100px auto;
+  grid-template-columns: 168px auto;
   grid-template-rows: auto auto;
   grid-template-areas:
     "header header"
@@ -13,5 +13,5 @@
 }
 
 img {
-  max-width: 1300px;
+  max-width: 1400px;
 }

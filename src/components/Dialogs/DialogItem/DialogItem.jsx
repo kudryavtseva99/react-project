@@ -11,7 +11,14 @@ const DialogItem = (props) => {
           isActive ? `${s.dialog} ${s.activeItem}` : s.dialog
         }
       >
-        {props.name}
+        <div className={s.dialogItemContent}>
+          <img
+            src={props.avatar}
+            alt={`${props.name}'s avatar`}
+            className={s.avatar}
+          />
+          <span>{props.name}</span>
+        </div>
       </NavLink>
     </div>
   );
