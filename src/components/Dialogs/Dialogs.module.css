@@ -33,3 +33,11 @@
   vertical-align: middle;
   margin-bottom: 5px;
 }
+
+.button {
+  margin-bottom: 10px;
+}
+
+.textArea {
+  padding: 10px;
+}
