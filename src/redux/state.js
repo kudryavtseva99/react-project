@@ -1,3 +1,5 @@
+import { rerenderEntireTree } from "../render";
+
 let state = {
   profilePage: {
     postsData: [
@@ -8,6 +10,7 @@ let state = {
         likesCount: 15,
       },
     ],
+    newPostText: "New something",
   },
   dialogsPage: {
     messagesData: [
@@ -63,6 +66,7 @@ let state = {
           "https://img.freepik.com/premium-vector/kitsune-mask-cartoon-character-icon-design_409025-876.jpg",
       },
     ],
+    newMessageText: "It's great day today!",
   },
   sidebar: {
     friends: [
@@ -87,4 +91,38 @@ let state = {
     ],
   },
 };
+
+// посты
+export let addPost = () => {
+  let newPost = {
+    id: 5,
+    message: state.profilePage.newPostText,
+    likesCount: 0,
+  };
+  state.profilePage.postsData.push(newPost);
+  state.profilePage.newPostText = "";
+  rerenderEntireTree(state);
+};
+
+export let updateNewPostText = (newText) => {
+  state.profilePage.newPostText = newText;
+  rerenderEntireTree(state);
+};
+
+// диалоги
+export let addNewMessage = () => {
+  let newMessage = {
+    id: 8,
+    message: state.dialogsPage.newMessageText,
+  };
+  state.dialogsPage.messagesData.push(newMessage);
+  state.dialogsPage.newMessageText = "";
+  rerenderEntireTree(state);
+};
+
+export let updateNewMessageText = (newMes) => {
+  state.dialogsPage.newMessageText = newMes;
+  rerenderEntireTree(state);
+};
+
 export default state;
