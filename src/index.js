@@ -1,4 +1,5 @@
 import "./index.css";
+import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import store from "./redux/state";
 import React from "react";
@@ -10,9 +11,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 let rerenderEntireTree = (state) => {
   root.render(
-    <React.StrictMode>
-      <App state={state} dispatch={store.dispatch.bind(store)} />
-    </React.StrictMode>
+    <BrowserRouter>
+      <React.StrictMode>
+        <App state={state} dispatch={store.dispatch.bind(store)} />
+      </React.StrictMode>
+    </BrowserRouter>
   );
 };
 

@@ -17,15 +17,6 @@ let store = {
       newPostText: "New something",
     },
     dialogsPage: {
-      messagesData: [
-        { id: 1, message: "Hi! How are you?" },
-        { id: 2, message: "I want to tell you about my day." },
-        { id: 3, message: "What's your fav hobby?" },
-        { id: 4, message: "See u soon" },
-        { id: 5, message: "I'm late. Sorry" },
-        { id: 6, message: "Tomorrow" },
-        { id: 7, message: "Think about it" },
-      ],
       dialogsData: [
         {
           id: 1,
@@ -70,6 +61,16 @@ let store = {
             "https://img.freepik.com/premium-vector/kitsune-mask-cartoon-character-icon-design_409025-876.jpg",
         },
       ],
+      messagesData: [
+        { id: 1, message: "Hi! How are you?" },
+        { id: 2, message: "I want to tell you about my day." },
+        { id: 3, message: "What's your fav hobby?" },
+        { id: 4, message: "See u soon" },
+        { id: 5, message: "I'm late. Sorry" },
+        { id: 6, message: "Tomorrow" },
+        { id: 7, message: "Think about it" },
+      ],
+
       newMessageText: "It's great day today!",
     },
     sidebar: {
