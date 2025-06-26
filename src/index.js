@@ -6,19 +6,18 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import { Provider } from "./StoreContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 let rerenderEntireTree = (state) => {
   root.render(
     <BrowserRouter>
-      <React.StrictMode>
-        <App
-          state={state}
-          store={store}
-          dispatch={store.dispatch.bind(store)}
-        />
-      </React.StrictMode>
+      <Provider store={store}>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </Provider>
     </BrowserRouter>
   );
 };
