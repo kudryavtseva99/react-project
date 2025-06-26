@@ -20,9 +20,6 @@ const DialogsContainer = (props) => {
       addNewMessage={onAddNewMessage}
       updateNewMessageText={onMessageChange}
       dialogsPage={state}
-      newMessageText={state.newMessageText}
-      messagesData={state.messagesData}
-      dialogsData={state.dialogsData}
     />
   );
 };
