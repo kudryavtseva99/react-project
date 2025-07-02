@@ -1,56 +1,17 @@
+import axios from "axios";
 import styles from "./Users.module.css";
+
+let userPhoto =
+  "https://img.freepik.com/premium-vector/cute-fox-kitsune-holding-handheld-fan-cartoon-vector-icon-illustration-animal-holiday-isolated-flat_138676-9824.jpg";
+
 const Users = (props) => {
   if (props.users.length === 0) {
-    props.setUsers([
-      {
-        id: 1,
-        avatarUrl:
-          "https://img.freepik.com/premium-vector/cute-fox-kitsune-holding-handheld-fan-cartoon-vector-icon-illustration-animal-holiday-isolated-flat_138676-9824.jpg",
-        followed: false,
-        fullname: "Dmitry K",
-        status: "I am looking for a job right now...",
-        location: {
-          city: "Minsk",
-          country: "Belarus",
-        },
-      },
-      {
-        id: 2,
-        avatarUrl:
-          "https://img.freepik.com/premium-vector/cute-fox-kitsune-holding-handheld-fan-cartoon-vector-icon-illustration-animal-holiday-isolated-flat_138676-9824.jpg",
-        followed: true,
-        fullname: "Julia T",
-        status: "I'm reading the book 'The Dark Rise'",
-        location: {
-          city: "Orel",
-          country: "Russia",
-        },
-      },
-      {
-        id: 3,
-        avatarUrl:
-          "https://img.freepik.com/premium-vector/cute-fox-kitsune-holding-handheld-fan-cartoon-vector-icon-illustration-animal-holiday-isolated-flat_138676-9824.jpg",
-        followed: true,
-        fullname: "Artur B",
-        status: "I play in Metro Exodus",
-        location: {
-          city: "Belgrade",
-          country: "Serbia",
-        },
-      },
-      {
-        id: 4,
-        avatarUrl:
-          "https://img.freepik.com/premium-vector/cute-fox-kitsune-holding-handheld-fan-cartoon-vector-icon-illustration-animal-holiday-isolated-flat_138676-9824.jpg",
-        followed: true,
-        fullname: "Nastya P",
-        status: "I love my cat Hollie",
-        location: {
-          city: "Saint-Petersburg",
-          country: "Russia",
-        },
-      },
-    ]);
+    axios
+      .get("https://social-network.samuraijs.com/api/1.0/users")
+
+      .then((response) => {
+        props.setUsers(response.data.items);
+      });
   }
 
   return (
@@ -60,7 +21,7 @@ const Users = (props) => {
           <span>
             <div>
               <img
-                src={u.avatarUrl}
+                src={u.photos.small != null ? u.photos.small : userPhoto}
                 className={styles.usersAvatar}
                 alt="avatar"
               />
@@ -87,12 +48,12 @@ const Users = (props) => {
           </span>
           <span>
             <span>
-              <div>{u.fullname}</div>
+              <div>{u.name}</div>
               <div>{u.status}</div>
             </span>
             <span>
-              <div>{u.location.country}</div>
-              <div>{u.location.city}</div>
+              <div>{"u.location.country"}</div>
+              <div>{"u.location.city"}</div>
             </span>
           </span>
         </div>
