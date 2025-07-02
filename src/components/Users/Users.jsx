@@ -1,8 +1,6 @@
 import axios from "axios";
 import styles from "./Users.module.css";
-
-let userPhoto =
-  "https://img.freepik.com/premium-vector/cute-fox-kitsune-holding-handheld-fan-cartoon-vector-icon-illustration-animal-holiday-isolated-flat_138676-9824.jpg";
+import userPhoto from "../../assets/images/userPhoto.jpg";
 
 const Users = (props) => {
   if (props.users.length === 0) {
