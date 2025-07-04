@@ -31,6 +31,8 @@ class Users extends React.Component {
       this.props.totalUsersCount / this.props.pageSize
     );
 
+    pagesCount = Math.min(pagesCount, 15);
+
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
       pages.push(i);
@@ -42,7 +44,9 @@ class Users extends React.Component {
           {pages.map((p) => {
             return (
               <span
-                className={this.props.currentPage === p && styles.selectedPage}
+                className={`${styles.pageItem} ${
+                  this.props.currentPage === p ? styles.selectedPage : ""
+                }`}
                 onClick={(e) => {
                   this.onPageChanged(p);
                 }}
