@@ -1,14 +1,27 @@
 .nav {
   grid-area: nav;
   padding: 20px;
-  background-color: antiquewhite;
+  background-color: #f8eaff;
+  box-shadow: 0 4px 8px rgba(154, 94, 174, 0.1);
+  /* border-radius: 12px; */
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .item {
-  color: black;
+  color: #7a3d9a;
   text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  /* padding: 7px 14px; */
+  border-radius: 8px;
+  user-select: none;
+  cursor: pointer;
 }
 
 .activeLink {
-  color: pink;
+  color: #4a1761;
+  font-weight: bold;
 }
