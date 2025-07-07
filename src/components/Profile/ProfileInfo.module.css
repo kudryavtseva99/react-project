@@ -1,3 +1,92 @@
 .description {
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 400px;
+  margin: 20px 0px 20px 20px;
+  padding: 20px;
+  background-color: #f8eaff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(122, 61, 154, 0.15);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #4a1761;
+}
+
+.aboutMe {
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #5d2d7b;
+}
+
+.userAvatar {
+  width: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(122, 61, 154, 0.3);
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fullName {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 8px;
+  color: #7a3d9a;
+}
+
+.contactItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background-color: #eabfff;
+  border-radius: 8px;
+  border: 1px solid #c99ce6;
+  font-size: 15px;
+  user-select: none;
+}
+
+.contactKey {
+  font-weight: 600;
+  color: #4a1761;
+  text-transform: capitalize;
+  flex-shrink: 0;
+  width: 100px;
+}
+
+.contactValue {
+  color: #7a3d9a;
+  overflow-wrap: anywhere;
+}
+
+.nullValue {
+  color: #7a3d9a;
+  font-style: italic;
+}
+
+.jobStatus {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.positive {
+  color: #b57edc;
+  font-weight: bold;
+}
+
+.negative {
+  color: #4a1761;
+  font-weight: bold;
+}
+
+.jobDesc {
+  font-size: 14px;
+  margin-top: 10px;
+  color: #4a1761;
 }
