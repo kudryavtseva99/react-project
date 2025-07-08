@@ -45,9 +45,7 @@
   display: flex;
   justify-content: space-between;
   padding: 6px 12px;
-  background-color: #eabfff;
   border-radius: 8px;
-  border: 1px solid #c99ce6;
   font-size: 15px;
   user-select: none;
 }
