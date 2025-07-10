@@ -9,10 +9,37 @@
 }
 
 .loginBlock {
-  float: right;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 16px;
+  color: #6a0dad;
 }
 
 .loginBlock a {
-  color: black;
+  color: #7b2cbf;
+  font-weight: 500;
   text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background-color: #f3e8ff;
+  transition: all 0.2s ease;
+}
+
+.loginBlock a:hover {
+  background-color: #d9b8ff;
+  color: #4c0070;
+  text-decoration: none;
+}
+
+.loginBlock span {
+  background-color: #f8eaff;
+  color: #4c0070;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 600;
 }
