@@ -115,7 +115,7 @@ export const getUsers = (currentPage, pageSize) => {
   };
 };
 
-export const getUsersPage = (numberPage, pageSize) => {
+export const fetchUsersByPage = (numberPage, pageSize) => {
   return (dispatch) => {
     dispatch(setCurrentPage(numberPage));
     dispatch(toggleIsFetching(true));

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import {
   getUsers,
-  getUsersPage,
+  fetchUsersByPage,
   follow,
   unfollow,
 } from "../../redux/usersReducer";
@@ -15,7 +15,7 @@ class UsersContainer extends React.Component {
   }
 
   onPageChanged = (numberPage) => {
-    this.props.getUsersPage(numberPage, this.props.pageSize);
+    this.props.fetchUsersByPage(numberPage, this.props.pageSize);
   };
 
   render() {
@@ -50,7 +50,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   getUsers,
-  getUsersPage,
+  fetchUsersByPage,
   follow,
   unfollow,
 })(UsersContainer);
