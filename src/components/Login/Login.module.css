@@ -1,0 +1,27 @@
+/* login.css */
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  background-color: linear-gradient(135deg, #d8b4e2, #fbcfe8);
+  font-family: Arial, sans-serif;
+}
+
+.loginTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #7b2cbf;
+  margin-bottom: 24px;
+}
+
+.loginBox {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  text-align: center;
+}
