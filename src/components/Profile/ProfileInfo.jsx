@@ -1,5 +1,6 @@
 import styles from "./ProfileInfo.module.css";
 import Preloader from "../common/Preloader/Preloader";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -7,18 +8,19 @@ const ProfileInfo = (props) => {
   }
   return (
     <div>
-      <div>
+      {/* <div>
         <img
           src="https://habrastorage.org/getpro/habr/upload_files/8e9/63c/507/8e963c50758de1ed63c11e1e8dcfe916.jpg"
           alt="Япония"
         ></img>
-      </div>
+      </div> */}
       <div className={styles.description}>
         <img
           className={styles.userAvatar}
           src={props.profile.photos.large}
           alt="userProfilePhoto"
         />
+        <ProfileStatus status={"Hello"} />
         <div className={styles.fullName}>{props.profile.fullName}</div>
         <div className={styles.aboutMe}>{props.profile.aboutMe}</div>
         <div className={styles.contacts}>
