@@ -1,6 +1,7 @@
 import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Messages/Message";
+import AddNewMessageFormRedux from "./DialogForm";
 
 const Dialogs = (props) => {
   let state = props.dialogsPage;
@@ -18,13 +19,8 @@ const Dialogs = (props) => {
     <Message message={m.message} key={m.id} />
   ));
 
-  let onAddNewMessage = () => {
-    props.addNewMessage();
-  };
-
-  let onMessageChange = (e) => {
-    let text = e.target.value;
-    props.updateNewMessageText(text);
+  const addNewMessage = (formData) => {
+    props.addNewMessage(formData.newMessageBody);
   };
 
   return (
@@ -33,21 +29,11 @@ const Dialogs = (props) => {
       <div className={s.messages}>
         <div>{messagesElements}</div>
         <div className={s.textArea}>
-          <div>
-            <textarea
-              placeholder="Enter your messsage"
-              onChange={onMessageChange}
-              value={state.newMessageText}
-            ></textarea>
-          </div>
-          <div>
-            <button onClick={onAddNewMessage} className={s.button}>
-              Send new message
-            </button>
-          </div>
+          <AddNewMessageFormRedux onSubmit={addNewMessage} />
         </div>
       </div>
     </div>
   );
 };
+
 export default Dialogs;
