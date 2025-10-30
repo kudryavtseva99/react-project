@@ -1,33 +1,18 @@
 import styles from "./FormsControls.module.css";
 
-export const Textarea = ({ input, meta, ...props }) => {
-  const hasError = meta.touched && meta.error;
-  return (
-    <div
-      className={
-        hasError ? `${styles.formControl} ${styles.error}` : styles.formControl
-      }
-    >
-      <div>
-        <textarea {...input} {...props} />
+export const createField = (Element) => {
+  return ({ input, meta, ...props }) => {
+    const hasError = meta.touched && meta.error;
+    return (
+      <div className={`${styles.formControl} ${hasError ? styles.error : ""}`}>
+        <div>
+          <Element {...input} {...props} />
+        </div>
+        {hasError && <span>{meta.error}</span>}
       </div>
-      {hasError && <span>{meta.error}</span>}
-    </div>
-  );
+    );
+  };
 };
 
-export const Input = ({ input, meta, ...props }) => {
-  const hasError = meta.touched && meta.error;
-  return (
-    <div
-      className={
-        hasError ? `${styles.formControl} ${styles.error}` : styles.formControl
-      }
-    >
-      <div>
-        <input {...input} {...props} />
-      </div>
-      {hasError && <span>{meta.error}</span>}
-    </div>
-  );
-};
+export const Textarea = createField("textarea");
+export const Input = createField("input");
