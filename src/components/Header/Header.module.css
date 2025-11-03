@@ -43,3 +43,16 @@
   border-radius: 6px;
   font-weight: 600;
 }
+
+.logoutButton {
+  color: rgb(76, 0, 112);
+  font-weight: 600;
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background-color: rgb(248, 234, 255);
+  border: none;
+  cursor: pointer;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 16px;
+}
