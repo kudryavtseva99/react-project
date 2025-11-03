@@ -1,6 +1,7 @@
 import { Field, reduxForm } from "redux-form";
 import styles from "./Login.module.css";
-import { Input } from "../common/Preloader/FormsControls/FormsControls";
+import formStyles from "../common/FormsControls/FormsControls.module.css";
+import { Input } from "../common/FormsControls/FormsControls";
 import { required } from "../utils/validators/validators";
 import { login } from "../../redux/authReducer";
 import { connect } from "react-redux";
@@ -37,6 +38,9 @@ const LoginForm = (props) => {
         />{" "}
         remember me
       </div>
+      {props.error && (
+        <div className={formStyles.formSummaryError}>{props.error}</div>
+      )}
       <div>
         <button>Log in</button>
       </div>
