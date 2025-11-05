@@ -1,6 +1,6 @@
 import { Field, reduxForm } from "redux-form";
 import s from "./Dialogs.module.css";
-import { Textarea } from "../common/Preloader/FormsControls/FormsControls";
+import { Textarea } from "../common/FormsControls/FormsControls";
 import { required, maxLengthCreator } from "../utils/validators/validators";
 
 export const AddNewMessageForm = (props) => {
