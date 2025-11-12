@@ -1,8 +1,9 @@
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import AddNewPostFormRedux from "./MyPostsForm";
+import React from "react";
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
   let postsElements = props.postsData.map((p) => (
     <Post message={p.message} likesCount={p.likesCount} key={p.id} />
   ));
@@ -20,6 +21,6 @@ const MyPosts = (props) => {
       <div>{postsElements}</div>
     </div>
   );
-};
+});
 
 export default MyPosts;
