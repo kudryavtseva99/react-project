@@ -8,7 +8,10 @@ jest.mock("../api/api", () => ({
   },
 }));
 
-import profileReducer, { addPostActionCreator } from "./profileReducer";
+import profileReducer, {
+  addPostActionCreator,
+  deletePost,
+} from "./profileReducer";
 
 let state = {
   postsData: [
@@ -27,4 +30,28 @@ test("length of postsData should be incremented", () => {
   let newState = profileReducer(state, action);
 
   expect(newState.postsData.length).toBe(3);
+});
+
+test("message of new post should be correct", () => {
+  let action = addPostActionCreator("Yo");
+
+  let newState = profileReducer(state, action);
+
+  expect(newState.postsData[2].message).toBe("Yo");
+});
+
+test("after deleting length of postsData should be decrement", () => {
+  let action = deletePost(1);
+
+  let newState = profileReducer(state, action);
+
+  expect(newState.postsData.length).toBe(1); // проверяем длину массива
+});
+
+test("after deleting length of postsData should be decrement if id is incorrect", () => {
+  let action = deletePost(1000);
+
+  let newState = profileReducer(state, action);
+
+  expect(newState.postsData.length).toBe(2); // проверяем длину массива
 });
