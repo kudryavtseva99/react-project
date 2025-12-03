@@ -1,0 +1,35 @@
+.selectedPage {
+  background-color: #eabfff;
+  font-weight: bold;
+  color: #4a1761;
+  border: 1px solid #c99ce6;
+}
+
+.page {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.pageItem {
+  width: 40px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #f8eaff;
+  color: #7a3d9a;
+  border: 1px solid #e0c4ff;
+  transition: background-color 0.3s, color 0.3s;
+  user-select: none;
+  cursor: pointer;
+}
+
+.pageItem:hover {
+  background-color: #f3d6ff;
+  color: #5d2d7b;
+}

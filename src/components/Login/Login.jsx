@@ -6,41 +6,26 @@ import { required } from "../utils/validators/validators";
 import { login } from "../../redux/authReducer";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { createFieldHelper } from "../common/FormsControls/FormsControls";
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
   return (
-    <form onSubmit={props.handleSubmit}>
-      <div>
-        <Field
-          name={"email"}
-          placeholder="Email"
-          component={Input}
-          validate={[required]}
-        />
-      </div>
-      <div>
-        {" "}
-        <Field
-          name={"password"}
-          placeholder="Password"
-          type="password"
-          component={Input}
-          validate={[required]}
-        />
-      </div>
-      <div>
-        {" "}
-        <Field
-          name={"rememberMe"}
-          component={Input}
-          type={"checkbox"}
-          validate={[required]}
-        />{" "}
-        remember me
-      </div>
-      {props.error && (
-        <div className={formStyles.formSummaryError}>{props.error}</div>
+    <form onSubmit={handleSubmit}>
+      {createFieldHelper("email", "Email", Input, [required])}
+      {createFieldHelper("password", "Password", Input, [required], {
+        type: "password",
+      })}
+      {createFieldHelper(
+        "rememberMe",
+        null,
+        Input,
+        [],
+        {
+          type: "checkbox",
+        },
+        "remember me"
       )}
+      {error && <div className={formStyles.formSummaryError}>{error}</div>}
       <div>
         <button>Log in</button>
       </div>

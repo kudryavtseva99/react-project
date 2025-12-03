@@ -1,10 +1,10 @@
 import { usersAPI } from "../api/api";
 import { profileAPI } from "../api/api";
 
-const ADD_POST = "ADD-POST";
-const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_USER_STATUS = "SET_USER_STATUS";
-const DELETE_POST = "DELETE_POST";
+const ADD_POST = "socialNetwork/profile/ADD-POST";
+const SET_USER_PROFILE = "socialNetwork/profile/SET_USER_PROFILE";
+const SET_USER_STATUS = "socialNetwork/profile/SET_USER_STATUS";
+const DELETE_POST = "socialNetwork/profile/DELETE_POST";
 
 let initialState = {
   postsData: [
@@ -47,7 +47,7 @@ const profileReducer = (state = initialState, action) => {
     case DELETE_POST:
       return {
         ...state,
-        postsData: state.postsData.filter((p) => p.id != action.postId),
+        postsData: state.postsData.filter((p) => p.id !== action.postId),
       };
 
     default:
@@ -69,24 +69,21 @@ export const setUserStatus = (status) => ({ type: SET_USER_STATUS, status });
 
 export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 
-export const getUserProfile = (userId) => (dispatch) => {
-  usersAPI.getProfile(userId).then((response) => {
-    dispatch(setUserProfile(response.data));
-  });
+export const getUserProfile = (userId) => async (dispatch) => {
+  let response = await usersAPI.getProfile(userId);
+  dispatch(setUserProfile(response.data));
 };
 
-export const getUserStatus = (userId) => (dispatch) => {
-  profileAPI.getStatus(userId).then((response) => {
-    const status = response.data || "Статус не установлен";
+export const getUserStatus = (userId) => async (dispatch) => {
+  let response = await profileAPI.getStatus(userId);
+  const status = response.data || "Статус не установлен";
+  dispatch(setUserStatus(status));
+};
+
+export const updateUserStatus = (status) => async (dispatch) => {
+  let response = await profileAPI.updateStatus(status);
+  if (response.data.resultCode === 0) {
     dispatch(setUserStatus(status));
-  });
-};
-
-export const updateUserStatus = (status) => (dispatch) => {
-  profileAPI.updateStatus(status).then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(setUserStatus(status));
-    }
-  });
+  }
 };
 export default profileReducer;
