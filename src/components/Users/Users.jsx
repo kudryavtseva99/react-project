@@ -3,7 +3,7 @@ import User from "./User";
 
 const Users = ({
   currentPage,
-  totalUsersCount,
+  totalItemsCount,
   pageSize,
   onPageChanged,
   users,
@@ -13,9 +13,10 @@ const Users = ({
     <div>
       <Paginator
         currentPage={currentPage}
-        totalUsersCount={totalUsersCount}
+        totalItemsCount={totalItemsCount}
         pageSize={pageSize}
         onPageChanged={onPageChanged}
+        portionSize={15}
       />
       <div>
         {users.map((u) => (

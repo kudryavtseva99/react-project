@@ -1,11 +1,4 @@
-.selectedPage {
-  background-color: #eabfff;
-  font-weight: bold;
-  color: #4a1761;
-  border: 1px solid #c99ce6;
-}
-
-.page {
+.pagination {
   display: flex;
   gap: 8px;
   justify-content: center;
@@ -14,7 +7,41 @@
   margin-bottom: 20px;
 }
 
-.pageItem {
+/* КНОПКИ СТРЕЛОК */
+.navButton {
+  width: 40px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #f8eaff;
+  color: #7a3d9a;
+  border: 1px solid #e0c4ff;
+  transition: background-color 0.3s, color 0.3s;
+  user-select: none;
+  cursor: pointer;
+
+  /* убираем браузерные стили */
+  appearance: none;
+  outline: none;
+  border: 1px solid #e0c4ff;
+}
+
+.navButton:hover {
+  background-color: #f3d6ff;
+  color: #5d2d7b;
+}
+
+.navButton:disabled {
+  background-color: #f0e1ff;
+  color: #b793d8;
+  border-color: #e9d6ff;
+  cursor: not-allowed;
+}
+
+/* НОМЕРА СТРАНИЦ */
+.pageNumber {
   width: 40px;
   height: 36px;
   display: flex;
@@ -29,7 +56,14 @@
   cursor: pointer;
 }
 
-.pageItem:hover {
+.pageNumber:hover {
   background-color: #f3d6ff;
   color: #5d2d7b;
+}
+
+.selectedPage {
+  background-color: #eabfff;
+  font-weight: bold;
+  color: #4a1761;
+  border: 1px solid #c99ce6;
 }
