@@ -11,26 +11,28 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { initializeApp } from "./redux/appReducer";
 import Preloader from "./components/common/Preloader/Preloader";
+import { HashRouter } from "react-router-dom";
 
 const UsersContainer = withSuspense(
-  React.lazy(() => import("./components/Users/UsersContainer"))
+  React.lazy(() => import("./components/Users/UsersContainer")),
 );
 const News = withSuspense(React.lazy(() => import("./components/News/News")));
 const Music = withSuspense(
-  React.lazy(() => import("./components/Music/Music"))
+  React.lazy(() => import("./components/Music/Music")),
 );
 const Settings = withSuspense(
-  React.lazy(() => import("./components/Settings/Settings"))
+  React.lazy(() => import("./components/Settings/Settings")),
 );
 
 const DialogsContainer = withSuspense(
-  React.lazy(() => import("./components/Dialogs/DialogsContainer"))
+  React.lazy(() => import("./components/Dialogs/DialogsContainer")),
 );
 
 class App extends React.Component {
   componentDidMount() {
     this.props.initializeApp();
   }
+
   render() {
     if (!this.props.initialized) {
       return <Preloader />;
@@ -40,15 +42,17 @@ class App extends React.Component {
         <HeaderContainer />
         <Navbar />
         <div className="app-wrapper-content">
-          <Routes>
-            <Route path="/dialogs/*" element={<DialogsContainer />} />
-            <Route path="/profile/:userId?" element={<ProfileContainer />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/music" element={<Music />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/users" element={<UsersContainer />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
+          <HashRouter>
+            <Routes>
+              <Route path="/dialogs/*" element={<DialogsContainer />} />
+              <Route path="/profile/:userId?" element={<ProfileContainer />} />
+              <Route path="/news" element={<News />} />
+              <Route path="/music" element={<Music />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/users" element={<UsersContainer />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </HashRouter>
         </div>
       </div>
     );
@@ -61,5 +65,5 @@ const mapStateToProps = (state) => ({
 
 export default compose(
   WithRouter,
-  connect(mapStateToProps, { initializeApp })
+  connect(mapStateToProps, { initializeApp }),
 )(App);

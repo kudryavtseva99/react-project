@@ -8,6 +8,7 @@ let initialState = {
   email: null,
   login: null,
   isAuth: false,
+  initialized: false,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -16,6 +17,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.data,
+        initialized: true,
       };
 
     default:
@@ -33,6 +35,8 @@ export const getAuthUserData = () => async (dispatch) => {
   if (response.data.resultCode === 0) {
     let { id, email, login } = response.data.data;
     dispatch(setAuthUserData(id, email, login, true));
+  } else {
+    dispatch(setAuthUserData(null, null, null, false));
   }
 };
 
