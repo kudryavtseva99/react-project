@@ -10,7 +10,7 @@ import WithRouter from "../utils/WithRouter/WithRouter";
 import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
-  componentDidMount() {
+  refreshProfile() {
     const userId = this.props.params.userId;
     const authorizedUser = this.props.authorizedUserId;
     if (!userId && !authorizedUser) {
@@ -21,6 +21,17 @@ class ProfileContainer extends React.Component {
     this.props.getUserProfile(currentId);
     this.props.getUserStatus(currentId);
   }
+
+  componentDidMount() {
+    this.refreshProfile();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.params.userId != prevProps.params.userId) {
+      this.refreshProfile();
+    }
+  }
+
   render() {
     return (
       <Profile
@@ -42,5 +53,5 @@ let mapStateToProps = (state) => ({
 
 export default compose(
   connect(mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus }),
-  WithRouter
+  WithRouter,
 )(ProfileContainer);
