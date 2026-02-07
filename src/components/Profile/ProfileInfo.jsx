@@ -1,6 +1,7 @@
 import styles from "./ProfileInfo.module.css";
 import Preloader from "../common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
+import userPhoto from "../../assets/images/userPhoto.jpg";
 
 const ProfileInfo = ({ profile, status, updateUserStatus }) => {
   if (!profile) {
@@ -11,7 +12,7 @@ const ProfileInfo = ({ profile, status, updateUserStatus }) => {
       <div className={styles.description}>
         <img
           className={styles.userAvatar}
-          src={profile.photos.large}
+          src={profile.photos.large || userPhoto}
           alt="userProfilePhoto"
         />
         <ProfileStatusWithHooks
