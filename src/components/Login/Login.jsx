@@ -1,4 +1,4 @@
-import { Field, reduxForm } from "redux-form";
+import { reduxForm } from "redux-form";
 import styles from "./Login.module.css";
 import formStyles from "../common/FormsControls/FormsControls.module.css";
 import { Input } from "../common/FormsControls/FormsControls";
@@ -23,7 +23,7 @@ const LoginForm = ({ handleSubmit, error }) => {
         {
           type: "checkbox",
         },
-        "remember me"
+        "remember me",
       )}
       {error && <div className={formStyles.formSummaryError}>{error}</div>}
       <div>
