@@ -23,12 +23,30 @@ const ProfileInfo = ({
   return (
     <div>
       <div className={styles.description}>
-        <img
-          className={styles.userAvatar}
-          src={profile.photos.large || userPhoto}
-          alt="userProfilePhoto"
-        />
-        {isOwner && <input type={"file"} onChange={onMainPhotoSelected} />}
+        <div className={styles.avatarBlock}>
+          <img
+            className={styles.userAvatar}
+            src={profile.photos.large || userPhoto}
+            alt="userProfilePhoto"
+          />
+          {isOwner && (
+            <>
+              <input
+                id="avatarUpload"
+                className={styles.fileInput}
+                type={"file"}
+                onChange={onMainPhotoSelected}
+              />
+              <label
+                htmlFor="avatarUpload"
+                className={styles.avatarPlus}
+                title="change the avatar"
+              >
+                +
+              </label>
+            </>
+          )}
+        </div>
         <ProfileStatusWithHooks
           status={status}
           updateUserStatus={updateUserStatus}
