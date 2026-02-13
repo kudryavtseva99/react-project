@@ -52,7 +52,7 @@ const ProfileInfo = ({
           updateUserStatus={updateUserStatus}
         />
         <div className={styles.fullName}>{profile.fullName}</div>
-        <div className={styles.aboutMe}>{profile.aboutMe}</div>
+        <div className={styles.aboutMe}>About me:{profile.aboutMe}</div>
         <div className={styles.contacts}>
           {Object.entries(profile.contacts).map(([key, value]) => (
             <div key={key} className={styles.contactItem}>
@@ -73,6 +73,7 @@ const ProfileInfo = ({
             <span className={styles.negative}>Нет</span>
           )}
           <div className={styles.jobDesc}>
+            {" "}
             {profile.lookingForAJobDescription}
           </div>
         </div>
