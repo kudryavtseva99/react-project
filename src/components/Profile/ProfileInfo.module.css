@@ -13,6 +13,13 @@
   color: #4a1761;
 }
 
+.profileDesc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
 .aboutMe {
   font-size: 15px;
   text-align: center;
@@ -38,7 +45,6 @@
   font-size: 20px;
   font-weight: 700;
   text-align: center;
-  margin-bottom: 8px;
   color: #7a3d9a;
 }
 
@@ -100,7 +106,6 @@
   width: 1px;
   height: 1px;
   opacity: 0;
-  pointer-events: none;
 }
 
 .avatarPlus {
