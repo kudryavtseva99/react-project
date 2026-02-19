@@ -1,53 +1,77 @@
-import styles from "./ProfileInfo.module.css";
+import s from "./ProfileDataForm.module.css";
+import { reduxForm } from "redux-form";
 import {
   createFieldHelper,
   Input,
   Textarea,
 } from "./../common/FormsControls/FormsControls";
-import { reduxForm } from "redux-form";
 
-const ProfileDataForm = ({ profile, handleSubmit }) => {
+const ProfileDataForm = ({ profile, handleSubmit, error, onCancel }) => {
   return (
-    <form onSubmit={handleSubmit}>
-      <div className={styles.profileDesc}>
-        <div>
-          <button type="submit">save</button>
-        </div>
-        <div className={styles.fullName}>
+    <form className={s.form} onSubmit={handleSubmit}>
+      <div className={s.sectionTitle}>Редактирование профиля</div>
+
+      {/* Name */}
+      <div className={s.field}>
+        <div className={s.label}>Name</div>
+        <div className={s.inputWrap}>
           {createFieldHelper("fullName", "Full name", Input, [])}
         </div>
-        <div className={styles.aboutMe}>
-          {profile.aboutMe}{" "}
+      </div>
+
+      {/* About me */}
+      <div className={s.field}>
+        <div className={s.label}>About me</div>
+        <div className={s.inputWrap}>
           {createFieldHelper("aboutMe", "About me", Textarea, [])}
         </div>
-        <div className={styles.contacts}>
-          {Object.entries(profile.contacts).map(([key, value]) => (
-            <div key={key} className={styles.contactItem}>
-              <span className={styles.contactKey}>{key}:</span>{" "}
-              {value ? (
-                <span className={styles.contactValue}>{value}</span>
-              ) : (
-                <span className={styles.nullValue}>не указано</span>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className={styles.jobStatus}>
-          Ищу работу: {profile.lookingForAJob}
+      </div>
+
+      {/* Looking for a job */}
+      <div className={s.field}>
+        <div className={s.checkboxRow}>
+          <span className={s.label}>Ищу работу</span>
           {createFieldHelper("lookingForAJob", "", Input, [], {
             type: "checkbox",
           })}
-          <div className={styles.jobDesc}>
-            {" "}
-            {profile.lookingForAJobDescription}
-            {createFieldHelper(
-              "lookingForAJobDescription",
-              "My professional skills",
-              Textarea,
-              [],
-            )}
-          </div>
         </div>
+      </div>
+
+      {/* Professional skills */}
+      <div className={s.field}>
+        <div className={s.label}>My professional skills</div>
+        <div className={s.inputWrap}>
+          {createFieldHelper(
+            "lookingForAJobDescription",
+            "My professional skills",
+            Textarea,
+            [],
+          )}
+        </div>
+      </div>
+
+      {/* Contacts */}
+      <div className={s.field}>
+        <div className={s.label}>Contacts</div>
+        <div className={s.contactsGrid}>
+          {Object.keys(profile.contacts).map((key) => (
+            <div key={key} className={s.field}>
+              <div className={s.label}>{key}</div>
+              <div className={s.inputWrap}>
+                {createFieldHelper(`contacts.${key}`, key, Input, [])}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className={s.actions}>
+        <button className={s.saveBtn} type="submit">
+          Save
+        </button>
+        <button className={s.cancelBtn} type="button" onClick={onCancel}>
+          Cancel
+        </button>
       </div>
     </form>
   );

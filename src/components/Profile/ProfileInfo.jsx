@@ -13,14 +13,12 @@ const ProfileInfo = ({
   savePhoto,
   saveProfile,
 }) => {
-  let [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(false);
 
-  if (!profile) {
-    return <Preloader />;
-  }
+  if (!profile) return <Preloader />;
 
   const onMainPhotoSelected = (e) => {
-    if (e.target.files.length) {
+    if (e.target.files?.length) {
       savePhoto(e.target.files[0]);
     }
   };
@@ -32,45 +30,58 @@ const ProfileInfo = ({
   return (
     <div>
       <div className={styles.description}>
-        <div className={styles.avatarBlock}>
-          <img
-            className={styles.userAvatar}
-            src={profile.photos.large || userPhoto}
-            alt="userProfilePhoto"
-          />
-          {isOwner && (
-            <>
-              <input
-                id="avatarUpload"
-                className={styles.fileInput}
-                type={"file"}
-                onChange={onMainPhotoSelected}
-              />
-              <label
-                htmlFor="avatarUpload"
-                className={styles.avatarPlus}
-                title="change the avatar"
-              >
-                +
-              </label>
-            </>
+        <div className={styles.content}>
+          {/* Avatar */}
+          <div className={styles.avatarBlock}>
+            <img
+              className={styles.userAvatar}
+              src={profile.photos.large || userPhoto}
+              alt="userProfilePhoto"
+            />
+
+            {isOwner && (
+              <>
+                <input
+                  id="avatarUpload"
+                  className={styles.fileInput}
+                  type="file"
+                  onChange={onMainPhotoSelected}
+                />
+                <label
+                  htmlFor="avatarUpload"
+                  className={styles.avatarPlus}
+                  title="change the avatar"
+                >
+                  +
+                </label>
+              </>
+            )}
+          </div>
+
+          {/* Status */}
+          <div className={styles.status}>
+            <ProfileStatusWithHooks
+              status={status}
+              updateUserStatus={updateUserStatus}
+            />
+          </div>
+
+          {/* Form / View */}
+          {editMode ? (
+            <ProfileDataForm
+              initialValues={profile}
+              profile={profile}
+              onSubmit={onSubmit}
+              onCancel={() => setEditMode(false)}
+            />
+          ) : (
+            <ProfileData
+              profile={profile}
+              isOwner={isOwner}
+              goToEditMode={() => setEditMode(true)}
+            />
           )}
         </div>
-        <ProfileStatusWithHooks
-          status={status}
-          updateUserStatus={updateUserStatus}
-        />
-        {editMode ? (
-          <ProfileDataForm profile={profile} onSubmit={onSubmit} />
-        ) : (
-          <ProfileData
-            goToEditMode={() => {
-              setEditMode(true);
-            }}
-            profile={profile}
-            isOwner={isOwner}
-          />
-        )}
       </div>
     </div>
   );
@@ -78,34 +89,69 @@ const ProfileInfo = ({
 
 const ProfileData = ({ profile, isOwner, goToEditMode }) => {
   return (
-    <div className={styles.profileDesc}>
-      <div>
-        <button onClick={goToEditMode}>edit</button>
+    <div className={styles.profileView}>
+      {isOwner && (
+        <div className={styles.actions}>
+          <button className={styles.editBtn} onClick={goToEditMode}>
+            Edit
+          </button>
+        </div>
+      )}
+
+      <div className={styles.sectionTitle}>Профиль</div>
+
+      {/* Name */}
+      <div className={styles.field}>
+        <div className={styles.label}>Name</div>
+        <div className={styles.value}>
+          {profile.fullName || <span className={styles.muted}>не указано</span>}
+        </div>
       </div>
-      <div className={styles.fullName}>{profile.fullName}</div>
-      <div className={styles.aboutMe}>About me:{profile.aboutMe}</div>
-      <div className={styles.contacts}>
-        {Object.entries(profile.contacts).map(([key, value]) => (
-          <div key={key} className={styles.contactItem}>
-            <span className={styles.contactKey}>{key}:</span>{" "}
-            {value ? (
-              <span className={styles.contactValue}>{value}</span>
-            ) : (
-              <span className={styles.nullValue}>не указано</span>
-            )}
-          </div>
-        ))}
+
+      {/* About me */}
+      <div className={styles.field}>
+        <div className={styles.label}>About me</div>
+        <div className={styles.value}>
+          {profile.aboutMe || <span className={styles.muted}>не указано</span>}
+        </div>
       </div>
-      <div className={styles.jobStatus}>
-        Ищу работу:{" "}
-        {profile.lookingForAJob ? (
-          <span className={styles.positive}>Да</span>
-        ) : (
-          <span className={styles.negative}>Нет</span>
-        )}
-        <div className={styles.jobDesc}>
-          {" "}
-          {profile.lookingForAJobDescription}
+
+      {/* Looking for a job */}
+      <div className={styles.field}>
+        <div className={styles.label}>Ищу работу</div>
+        <div className={styles.value}>
+          {profile.lookingForAJob ? (
+            <span className={styles.positive}>Да</span>
+          ) : (
+            <span className={styles.negative}>Нет</span>
+          )}
+        </div>
+      </div>
+
+      {/* Skills */}
+      <div className={styles.field}>
+        <div className={styles.label}>My professional skills</div>
+        <div className={styles.value}>
+          {profile.lookingForAJobDescription ? (
+            profile.lookingForAJobDescription
+          ) : (
+            <span className={styles.muted}>не указано</span>
+          )}
+        </div>
+      </div>
+
+      {/* Contacts */}
+      <div className={styles.field}>
+        <div className={styles.label}>Contacts</div>
+        <div className={styles.contactsList}>
+          {Object.entries(profile.contacts).map(([key, value]) => (
+            <div key={key} className={styles.contactRow}>
+              <span className={styles.contactKey}>{key}</span>
+              <span className={value ? styles.contactValue : styles.nullValue}>
+                {value || "не указано"}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

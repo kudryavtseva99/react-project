@@ -13,92 +13,30 @@
   color: #4a1761;
 }
 
-.profileDesc {
+/* Единая сетка для всего контента */
+.content {
+  width: 100%;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 12px;
+  align-items: stretch;
 }
 
-.aboutMe {
-  font-size: 15px;
-  text-align: center;
-  margin-bottom: 5px;
-  color: #5d2d7b;
-  font-weight: 600;
+/* Avatar */
+.avatarBlock {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  align-self: center;
 }
 
 .userAvatar {
-  width: 200px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(122, 61, 154, 0.3);
-}
-
-.contacts {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.fullName {
-  font-size: 20px;
-  font-weight: 700;
-  text-align: center;
-  color: #7a3d9a;
-}
-
-.contactItem {
-  display: flex;
-  justify-content: space-between;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 15px;
-  user-select: none;
-}
-
-.contactKey {
-  font-weight: 600;
-  color: #4a1761;
-  text-transform: capitalize;
-  flex-shrink: 0;
-  width: 100px;
-}
-
-.contactValue {
-  color: #7a3d9a;
-  overflow-wrap: anywhere;
-}
-
-.nullValue {
-  color: #7a3d9a;
-  font-style: italic;
-}
-
-.jobStatus {
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-.positive {
-  color: #b57edc;
-  font-weight: bold;
-}
-
-.negative {
-  color: #4a1761;
-  font-weight: bold;
-}
-
-.jobDesc {
-  font-size: 14px;
-  margin-top: 10px;
-  color: #4a1761;
-}
-
-.avatarBlock {
-  position: relative;
-  display: inline-block;
 }
 
 .fileInput {
@@ -135,4 +73,165 @@
 
   cursor: pointer;
   user-select: none;
+}
+
+.status {
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+
+  overflow-wrap: anywhere;
+  word-break: break-word;
+
+  text-align: center;
+  font-size: 14px;
+  color: #4a1761;
+  font-weight: 600;
+}
+
+/* Если ProfileStatusWithHooks рендерит span/div — пусть тоже переносится */
+.status span,
+.status div,
+.status p {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Инпут статуса, когда он редактируется */
+.status input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  padding: 8px 10px;
+  border-radius: 10px;
+
+  border: 1px solid rgba(122, 61, 154, 0.25);
+  background: rgba(255, 255, 255, 0.7);
+  color: #4a1761;
+
+  outline: none;
+  text-align: center;
+}
+
+.status input:focus {
+  border-color: rgba(122, 61, 154, 0.65);
+  box-shadow: 0 0 0 3px rgba(181, 126, 220, 0.2);
+}
+
+/* --- VIEW MODE (ProfileData) --- */
+.profileView {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 800;
+  color: #4a1761;
+  text-align: left;
+  margin-bottom: 4px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #5d2d7b;
+}
+
+.value {
+  font-size: 14px;
+  color: #4a1761;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(122, 61, 154, 0.25);
+  border-radius: 10px;
+  padding: 10px 12px;
+  overflow-wrap: anywhere;
+}
+
+.muted {
+  color: #7a3d9a;
+  font-style: italic;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.editBtn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(122, 61, 154, 0.35);
+  background: rgba(255, 255, 255, 0.55);
+  color: #4a1761;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.editBtn:hover {
+  background: rgba(181, 126, 220, 0.22);
+  border-color: rgba(122, 61, 154, 0.6);
+}
+
+.editBtn:active {
+  transform: translateY(1px);
+}
+
+/* Contacts list */
+.contactsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contactRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(122, 61, 154, 0.18);
+}
+
+.contactKey {
+  font-weight: 600;
+  color: #4a1761;
+  text-transform: capitalize;
+  flex-shrink: 0;
+  width: 120px;
+}
+
+.contactValue {
+  color: #7a3d9a;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+
+.nullValue {
+  color: #7a3d9a;
+  font-style: italic;
+  text-align: right;
+}
+
+.positive {
+  color: #5d2d7b;
+  font-weight: bold;
+}
+
+.negative {
+  color: #4a1761;
+  font-weight: bold;
 }
