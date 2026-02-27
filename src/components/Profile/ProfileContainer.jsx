@@ -10,39 +10,58 @@ import {
 } from "../../redux/profileReducer";
 import WithRouter from "../utils/WithRouter/WithRouter";
 import { compose } from "redux";
+import { Navigate } from "react-router-dom";
 
 class ProfileContainer extends React.Component {
   refreshProfile() {
-    const userId = this.props.params.userId;
-    const authorizedUser = this.props.authorizedUserId;
-    if (!userId && !authorizedUser) {
-      this.props.navigate("/login");
-      return;
+    const routeUserId = this.props.params.userId;
+    const authorizedUserId = this.props.authorizedUserId;
+
+    const currentUserId = routeUserId || authorizedUserId;
+
+    // Если в адресе есть userId -> открываем этот профиль,
+    // если нет userId, но пользователь авторизован -> открываем его профиль
+    if (currentUserId) {
+      this.props.getUserProfile(currentUserId);
+      this.props.getUserStatus(currentUserId);
     }
-    const currentId = userId || authorizedUser;
-    this.props.getUserProfile(currentId);
-    this.props.getUserStatus(currentId);
   }
 
   componentDidMount() {
     this.refreshProfile();
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.params.userId !== prevProps.params.userId) {
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.params.userId !== prevProps.params.userId ||
+      this.props.authorizedUserId !== prevProps.authorizedUserId
+    ) {
       this.refreshProfile();
     }
   }
 
   render() {
+    const routeUserId = this.props.params.userId;
+    const authorizedUserId = this.props.authorizedUserId;
+
+    // если не авторизован и в url нет userId -> на login
+    if (!routeUserId && !authorizedUserId) {
+      return <Navigate to="/login" />;
+    }
+
+    const isOwner = routeUserId
+      ? String(routeUserId) === String(authorizedUserId)
+      : !!authorizedUserId;
+
     return (
       <Profile
         {...this.props}
-        isOwner={!this.props.params.userId}
+        isOwner={isOwner}
         profile={this.props.profile}
         status={this.props.status}
         updateUserStatus={this.props.updateUserStatus}
         savePhoto={this.props.savePhoto}
+        saveProfile={this.props.saveProfile}
       />
     );
   }
