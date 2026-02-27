@@ -107,3 +107,14 @@
 .cancelBtn:active {
   transform: translateY(1px);
 }
+
+.formError {
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba(255, 80, 80, 0.1);
+  border: 1px solid rgba(255, 80, 80, 0.35);
+  color: #b00020;
+  font-size: 13px;
+  font-weight: 600;
+}

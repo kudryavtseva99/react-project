@@ -1,5 +1,6 @@
 import { usersAPI } from "../api/api";
 import { profileAPI } from "../api/api";
+import { stopSubmit } from "redux-form";
 
 const ADD_POST = "socialNetwork/profile/ADD-POST";
 const SET_USER_PROFILE = "socialNetwork/profile/SET_USER_PROFILE";
@@ -106,12 +107,32 @@ export const savePhoto = (file) => async (dispatch) => {
   }
 };
 
-export const saveProfile = (profile) => async (dispatch) => {
-  let response = await profileAPI.saveProfile(profile);
+export const saveProfile = (profile) => async (dispatch, getState) => {
+  const state = getState();
+  const userId = state.auth.userId || state.profilePage.profile?.userId; // ✅ fallback
 
-  if (response.data.resultCode === 0) {
-    // dispatch(savePhotoSuccess(response.data.data.photos));
+  try {
+    const response = await profileAPI.saveProfile(profile);
+
+    if (response.data.resultCode === 0) {
+      if (userId) {
+        await dispatch(getUserProfile(userId)); // ✅ обновляем профиль после save
+      }
+      return Promise.resolve();
+    } else {
+      const message =
+        response.data.messages?.[0] || "Ошибка сохранения профиля";
+      dispatch(stopSubmit("editProfile", { _error: message })); // ✅ ошибка в форму
+      return Promise.reject(message);
+    }
+  } catch (error) {
+    const message =
+      error.response?.data?.message ||
+      error.response?.data?.messages?.[0] ||
+      "The request is invalid.";
+
+    dispatch(stopSubmit("editProfile", { _error: message }));
+    return Promise.reject(message);
   }
 };
-
 export default profileReducer;

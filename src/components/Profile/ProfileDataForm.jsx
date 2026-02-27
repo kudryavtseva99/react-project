@@ -5,29 +5,35 @@ import {
   Input,
   Textarea,
 } from "./../common/FormsControls/FormsControls";
+import { required } from "../utils/validators/validators";
 
-const ProfileDataForm = ({ profile, handleSubmit, error, onCancel }) => {
+const ProfileDataForm = ({
+  profile,
+  handleSubmit,
+  error,
+  onCancel,
+  onSubmit,
+}) => {
   return (
     <form className={s.form} onSubmit={handleSubmit}>
       <div className={s.sectionTitle}>Редактирование профиля</div>
 
-      {/* Name */}
+      {error && <div className={s.formError}>{error}</div>}
+
       <div className={s.field}>
         <div className={s.label}>Name</div>
         <div className={s.inputWrap}>
-          {createFieldHelper("fullName", "Full name", Input, [])}
+          {createFieldHelper("fullName", "Full name", Input, [required])}
         </div>
       </div>
 
-      {/* About me */}
       <div className={s.field}>
         <div className={s.label}>About me</div>
         <div className={s.inputWrap}>
-          {createFieldHelper("aboutMe", "About me", Textarea, [])}
+          {createFieldHelper("aboutMe", "About me", Textarea, [required])}
         </div>
       </div>
 
-      {/* Looking for a job */}
       <div className={s.field}>
         <div className={s.checkboxRow}>
           <span className={s.label}>Ищу работу</span>
@@ -37,7 +43,6 @@ const ProfileDataForm = ({ profile, handleSubmit, error, onCancel }) => {
         </div>
       </div>
 
-      {/* Professional skills */}
       <div className={s.field}>
         <div className={s.label}>My professional skills</div>
         <div className={s.inputWrap}>
@@ -45,16 +50,15 @@ const ProfileDataForm = ({ profile, handleSubmit, error, onCancel }) => {
             "lookingForAJobDescription",
             "My professional skills",
             Textarea,
-            [],
+            [required],
           )}
         </div>
       </div>
 
-      {/* Contacts */}
       <div className={s.field}>
         <div className={s.label}>Contacts</div>
         <div className={s.contactsGrid}>
-          {Object.keys(profile.contacts).map((key) => (
+          {Object.keys(profile?.contacts || {}).map((key) => (
             <div key={key} className={s.field}>
               <div className={s.label}>{key}</div>
               <div className={s.inputWrap}>
@@ -77,8 +81,9 @@ const ProfileDataForm = ({ profile, handleSubmit, error, onCancel }) => {
   );
 };
 
-const ProfileDataFormReduxForm = reduxForm({ form: "editProfile" })(
-  ProfileDataForm,
-);
+const ProfileDataFormReduxForm = reduxForm({
+  form: "editProfile",
+  enableReinitialize: true,
+})(ProfileDataForm);
 
 export default ProfileDataFormReduxForm;

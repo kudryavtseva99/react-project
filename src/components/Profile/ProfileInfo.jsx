@@ -23,8 +23,13 @@ const ProfileInfo = ({
     }
   };
 
-  const onSubmit = (formData) => {
-    saveProfile(formData);
+  const onSubmit = async (formData) => {
+    await saveProfile(formData);
+    setEditMode(false);
+  };
+
+  const onCancel = () => {
+    setEditMode(false);
   };
 
   return (
@@ -72,7 +77,7 @@ const ProfileInfo = ({
               initialValues={profile}
               profile={profile}
               onSubmit={onSubmit}
-              onCancel={() => setEditMode(false)}
+              onCancel={onCancel}
             />
           ) : (
             <ProfileData
@@ -144,7 +149,7 @@ const ProfileData = ({ profile, isOwner, goToEditMode }) => {
       <div className={styles.field}>
         <div className={styles.label}>Contacts</div>
         <div className={styles.contactsList}>
-          {Object.entries(profile.contacts).map(([key, value]) => (
+          {Object.entries(profile?.contacts || {}).map(([key, value]) => (
             <div key={key} className={styles.contactRow}>
               <span className={styles.contactKey}>{key}</span>
               <span className={value ? styles.contactValue : styles.nullValue}>
